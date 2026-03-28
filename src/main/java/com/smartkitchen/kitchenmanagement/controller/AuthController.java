@@ -16,21 +16,17 @@ import com.smartkitchen.kitchenmanagement.service.UserService;
 @RequestMapping("/auth")
 public class AuthController {
 
-	  @Autowired
-	    private UserRepository userRepository;
-	    private UserService userservice.;
+	@Autowired
+	private UserService userService;
 
-	    @PostMapping("/register")
-	    public User register(@RequestBody User user){
-	        return userRepository.save(user);
-	    }
-	    
-	    @PostMapping("/login")
-	    public LoginResponse login(@RequestBody LoginRequest request) {
-	    	
-	    	LoginResponse response = userservice.loginUser(request);
-	    	return response;
-	    	
-	    }
+	@PostMapping("/register")
+	public User register(@RequestBody User user) {
+		return userService.registerUser(user);
+	}
+
+	@PostMapping("/login")
+	public LoginResponse login(@RequestBody LoginRequest request) {
+		return userService.loginUser(request);
+	}
 	
 }

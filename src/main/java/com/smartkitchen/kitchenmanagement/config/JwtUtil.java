@@ -2,21 +2,27 @@ package com.smartkitchen.kitchenmanagement.config;
 
 import java.util.Date;
 
+import javax.crypto.SecretKey;
+
+import org.springframework.stereotype.Component;
+
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 
+@Component
 public class JwtUtil {
 	
-	private String SECRET = "9AUG2001";
+	SecretKey key = Keys.secretKeyFor(io.jsonwebtoken.SignatureAlgorithm.HS256);
 	
 	//generate token method 
 	
-	public String generateToken(String username) {
+	public String generateToken(String email) {
 		return Jwts.builder()
-                .setSubject(username)
+                .setSubject(email)
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .signWith(SignatureAlgorithm.HS256, SECRET)
+                .signWith(SignatureAlgorithm.HS256, key)
                 .compact();
 		
 	}
@@ -24,7 +30,7 @@ public class JwtUtil {
 	public String extractUsername(String token) {
 
         return Jwts.parser()
-                .setSigningKey(SECRET)
+                .setSigningKey(key)
                 .parseClaimsJws(token)
                 .getBody()
                 .getSubject();
