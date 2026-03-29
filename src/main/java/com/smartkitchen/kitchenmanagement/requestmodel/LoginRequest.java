@@ -1,4 +1,4 @@
-package com.smartkitchen.kitchenmanagement.model;
+package com.smartkitchen.kitchenmanagement.requestmodel;
 
 public class LoginRequest {
 

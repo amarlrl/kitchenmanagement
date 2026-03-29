@@ -5,10 +5,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.smartkitchen.kitchenmanagement.config.JwtUtil;
-import com.smartkitchen.kitchenmanagement.model.LoginRequest;
-import com.smartkitchen.kitchenmanagement.model.LoginResponse;
 import com.smartkitchen.kitchenmanagement.model.User;
 import com.smartkitchen.kitchenmanagement.repository.UserRepository;
+import com.smartkitchen.kitchenmanagement.requestmodel.LoginRequest;
+import com.smartkitchen.kitchenmanagement.responsemodel.LoginResponse;
 
 import java.util.Optional;
 

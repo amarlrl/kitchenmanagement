@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smartkitchen.kitchenmanagement.model.LoginRequest;
-import com.smartkitchen.kitchenmanagement.model.LoginResponse;
 import com.smartkitchen.kitchenmanagement.model.User;
 import com.smartkitchen.kitchenmanagement.repository.UserRepository;
+import com.smartkitchen.kitchenmanagement.requestmodel.LoginRequest;
+import com.smartkitchen.kitchenmanagement.responsemodel.LoginResponse;
 import com.smartkitchen.kitchenmanagement.service.UserService;
 
 @RestController
