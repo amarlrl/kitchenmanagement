@@ -10,6 +10,7 @@ import com.smartkitchen.kitchenmanagement.repository.UserRepository;
 import com.smartkitchen.kitchenmanagement.requestmodel.LoginRequest;
 import com.smartkitchen.kitchenmanagement.responsemodel.LoginResponse;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -44,4 +45,30 @@ public class UserService {
 		
 		return response;
 	}
+	
+	public User getUserById(String id) {
+		try {
+			if(id == null) {
+				   throw new RuntimeException("user not found with id: " + id);
+			}
+			Optional<User> userOpt = userRepository.findById(id);
+			if(userOpt.isEmpty()) {
+				throw new RuntimeException("user not found with id: " + id);
+			}
+			return userOpt.get();
+			
+		}catch(Exception e) {
+			 throw new RuntimeException("Error occurred while fetching user: " + e.getMessage());
+		}
+	}
+	
+	public List<User> getallUsers(){
+		try {
+			List<User> userList = userRepository.findAll();
+			return userList;
+		}catch(Exception e) {
+			throw new RuntimeException("Error occurred while fetching user: " + e.getMessage());
+		}
+	}
+	
 }
