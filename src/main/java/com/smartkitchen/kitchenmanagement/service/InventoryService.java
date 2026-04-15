@@ -1,5 +1,8 @@
 package com.smartkitchen.kitchenmanagement.service;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -94,4 +97,28 @@ public class InventoryService {
             throw new RuntimeException("Error occurred while getting inventories: " + e.getMessage());
         }
     }
+    
+    public List<Inventory> getExpiryInventory(){
+    	try {
+    		List<Inventory> invs = new ArrayList<>();
+    		List<Inventory> items = this.getAllInventories();
+    		
+    		LocalDate today = LocalDate.now();
+    		
+    		for(Inventory item: items) {
+    			if(item.getExpiryDate() != null) {
+    				LocalDate expiryDate = item.getExpiryDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    				if(expiryDate.equals(today)) {
+    					invs.add(item);
+    				}
+    			}
+    		}
+    		return invs;
+    	}
+    	catch(Exception e) {
+    		 throw new RuntimeException("Error occurred while checking the expiry of Inventories: " + e.getMessage());
+    	}
+    }
+    
+    
 }
