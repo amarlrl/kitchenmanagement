@@ -26,7 +26,7 @@ public class IngridentExpiryCheckSchedular {
 	@Autowired
 	EmailService emailservice;
 	
-	@Scheduled(fixedRate = 120000)
+	@Scheduled(cron = "0 0 9 * * ?", zone = "Asia/Kolkata")
 	public void checkExpiry() {
 		
 		try {
